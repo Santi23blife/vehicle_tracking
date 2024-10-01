@@ -1,19 +1,20 @@
-
 # Documentación de la Aplicación de Rastreo de Vehículos
 
 ## Descripción del Proyecto
+
 Esta aplicación permite administrar una flotilla de vehículos, donde cada vehículo tiene información como su ID, placas y última posición conocida (lat, lon). Los usuarios pueden interactuar únicamente con los vehículos que han creado.
 
 ## Tecnologías Usadas
-- Django
-- Django REST Framework
-- SQLite (base de datos por defecto)
-- Python
-- JWT para autenticación
+
+- **Backend:** Django, Django REST Framework, SQLite, JWT para autenticación.
+- **Frontend:** React con Vite y TypeScript, React-Leaflet para el mapa, JWT para autenticación.
 
 ## Estructura del Proyecto
+
+### Backend
+
 ```
-engineering-project/
+vehicle_tracking/
 ├── vehicles/                   # Aplicación Django para la gestión de vehículos
 │   ├── migrations/             # Migraciones de la base de datos
 │   ├── __init__.py
@@ -23,13 +24,28 @@ engineering-project/
 │   ├── serializers.py          # Serializadores para los modelos
 │   ├── tests/                  # Pruebas unitarias
 │   └── views.py                # Vistas de la API
-├── engineering_project/        # Proyecto Django principal
+├── vehicle_tracking/           # Proyecto Django principal
 │   ├── __init__.py
 │   ├── settings.py             # Configuraciones de la aplicación
 │   ├── urls.py                 # Rutas del proyecto
 │   └── wsgi.py
 ├── manage.py                   # Script para administrar el proyecto
 └── requirements.txt            # Dependencias del proyecto
+```
+
+### Frontend
+
+```
+vehicle_tracking-frontend/
+├── src/                        # Carpeta principal del código del frontend
+│   ├── components/             # Componentes de React
+│   ├── App.tsx                 # Componente principal de la aplicación
+│   ├── index.tsx               # Entrada principal
+│   ├── hooks/                  # Custom hooks
+│   └── services/               # Servicios para interacción con la API
+├── public/                     # Archivos estáticos
+├── package.json                # Dependencias de npm
+└── vite.config.ts              # Configuración de Vite
 ```
 
 ## Rutas de la API
@@ -39,29 +55,31 @@ engineering-project/
 - **Crear un usuario**
   - **Método:** POST
   - **Endpoint:** `/api/users/`
-  - **Body:** 
+  - **Body:**
     ```json
     {
       "username": "testuser",
       "password": "testpassword"
     }
     ```
-  - **Respuesta:** 
+  - **Respuesta:**
     - `201 Created` si el usuario es creado.
-  
 - **Listar usuarios**
+
   - **Método:** GET
   - **Endpoint:** `/api/users/`
   - **Respuesta:**
     - `200 OK` con una lista de usuarios.
 
 - **Obtener usuario por ID**
+
   - **Método:** GET
   - **Endpoint:** `/api/users/<id>/`
-  - **Respuesta:** 
+  - **Respuesta:**
     - `200 OK` con los detalles del usuario.
 
 - **Actualizar usuario**
+
   - **Método:** PUT
   - **Endpoint:** `/api/users/<id>/`
   - **Body:**
@@ -83,6 +101,7 @@ engineering-project/
 ### Vehículos
 
 - **Crear un vehículo**
+
   - **Método:** POST
   - **Endpoint:** `/api/vehicles/`
   - **Body:**
@@ -97,18 +116,21 @@ engineering-project/
     - `201 Created` si el vehículo es creado.
 
 - **Listar vehículos**
+
   - **Método:** GET
   - **Endpoint:** `/api/vehicles/`
   - **Respuesta:**
     - `200 OK` con una lista de vehículos del usuario autenticado.
 
 - **Obtener vehículo por ID**
+
   - **Método:** GET
   - **Endpoint:** `/api/vehicles/<id>/`
   - **Respuesta:**
     - `200 OK` con los detalles del vehículo.
 
 - **Actualizar vehículo**
+
   - **Método:** PUT
   - **Endpoint:** `/api/vehicles/<id>/`
   - **Body:**
@@ -136,13 +158,17 @@ engineering-project/
 
 ## Ejecución Local
 
+### Backend
+
 1. Clona el repositorio:
+
    ```bash
    git clone <url-del-repositorio>
-   cd engineering-project
+   cd vehicle_tracking
    ```
 
 2. Crea un entorno virtual:
+
    ```bash
    python -m venv venv
    source venv/bin/activate  # En Linux/Mac
@@ -150,11 +176,13 @@ engineering-project/
    ```
 
 3. Instala las dependencias:
+
    ```bash
    pip install -r requirements.txt
    ```
 
 4. Ejecuta las migraciones:
+
    ```bash
    python manage.py migrate
    ```
@@ -164,9 +192,29 @@ engineering-project/
    python manage.py runserver
    ```
 
+### Frontend
+
+1. Clona el repositorio del frontend.
+
+   ```bash
+   git clone <url-del-repositorio-frontend>
+   cd vehicle_tracking-frontend
+   ```
+
+2. Instala las dependencias:
+
+   ```bash
+   npm install
+   ```
+
+3. Levanta la aplicación:
+   ```bash
+   npm run dev
+   ```
+
 ## Pruebas Unitarias
 
-Las pruebas se encuentran en el directorio `vehicles/tests/`. Puedes ejecutarlas con:
+Las pruebas del backend se encuentran en el directorio `vehicles/tests/`. Puedes ejecutarlas con:
 
 ```bash
 python manage.py test vehicles
@@ -179,3 +227,53 @@ python manage.py test vehicles
 3. **Clonar el repositorio en la instancia.**
 4. **Instalar dependencias y levantar el servidor.**
 5. **Asegurarte de que el dominio está en ALLOWED_HOSTS.**
+
+## Mapas y Funcionalidades en el Frontend
+
+### Descripción
+
+El mapa muestra la ubicación de los vehículos de la flota y permite interactuar con ellos. Los usuarios pueden ver su ubicación actual y realizar acciones de administración (creación, edición, eliminación).
+
+### Componentes Principales
+
+- **Mapa**: Renderizado con `React-Leaflet`, muestra la ubicación de los vehículos.
+- **Login Modal**: Implementado con React Portals para que se renderice en cualquier parte de la jerarquía de componentes.
+- **Animaciones**: Utilizando `Leaflet` para realizar animaciones suaves cuando el mapa cambia de ubicación al seleccionar un vehículo.
+
+### Ejemplo de Uso del Mapa
+
+Para mover el mapa a una nueva ubicación con animación:
+
+```tsx
+const flyToLocation = (map, lat, lng) => {
+  map.flyTo([lat, lng], 13, { animate: true, duration: 2 });
+};
+```
+
+### Gestión de Clicks Dobles
+
+Una función personalizada para distinguir entre un solo clic y un doble clic:
+
+```tsx
+let clickTimeout = null;
+
+const handleClick = () => {
+  if (clickTimeout !== null) {
+    clearTimeout(clickTimeout);
+    handleDoubleClick();
+  } else {
+    clickTimeout = setTimeout(() => {
+      handleSingleClick();
+      clickTimeout = null;
+    }, 250);
+  }
+};
+
+const handleSingleClick = () => {
+  // Acción para un solo clic
+};
+
+const handleDoubleClick = () => {
+  // Acción para doble clic
+};
+```
