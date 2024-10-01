@@ -1,5 +1,5 @@
 // const SERVER_URL = import.meta.env.SERVER_URL
-const SERVER_URL = "http://3.21.40.187"
+const SERVER_URL = "https://434c-3-21-40-187.ngrok-free.app"
 
 export interface User {
     username: string;
@@ -11,7 +11,8 @@ export const authService = {
         const response = await fetch(`${SERVER_URL}/api/token/`, {
             method: 'POST',
             headers: {
-                'Content-Type': 'application/json'
+                'Content-Type': 'application/json',
+                'ngrok-skip-browser-warning': '69420'
             },
             body: JSON.stringify({
                 username,
@@ -31,7 +32,8 @@ export const authService = {
         const response = await fetch(`${SERVER_URL}/api/users/`, {
             method: 'POST',
             headers: {
-                'Content-Type': 'application/json'
+                'Content-Type': 'application/json',
+                'ngrok-skip-browser-warning': '69420'
             },
             body: JSON.stringify({
                 username,

@@ -1,5 +1,5 @@
 // const SERVER_URL = import.meta.env.SERVER_URL
-const SERVER_URL = "http://3.21.40.187"
+const SERVER_URL = "https://434c-3-21-40-187.ngrok-free.app"
 export interface Vehicle {
     id?: number;
     license_plate: string;
@@ -13,7 +13,8 @@ export const vehicleService = {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
-                'Authorization': `Bearer ${token}`
+                'Authorization': `Bearer ${token}`,
+                'ngrok-skip-browser-warning': '69420'
             }
         })
 
@@ -28,7 +29,8 @@ export const vehicleService = {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
-                'Authorization': `Bearer ${token}`
+                'Authorization': `Bearer ${token}`,
+                'ngrok-skip-browser-warning': '69420'
             },
             body: JSON.stringify(vehicle)
         })
@@ -44,7 +46,8 @@ export const vehicleService = {
             method: 'PUT',
             headers: {
                 'Content-Type': 'application/json',
-                'Authorization': `Bearer ${token}`
+                'Authorization': `Bearer ${token}`,
+                'ngrok-skip-browser-warning': '69420'
             },
             body: JSON.stringify(vehicle)
         })
@@ -60,7 +63,8 @@ export const vehicleService = {
             method: 'DELETE',
             headers: {
                 'Content-Type': 'application/json',
-                'Authorization': `Bearer ${token}`
+                'Authorization': `Bearer ${token}`,
+                'ngrok-skip-browser-warning': '69420'
             }
         })
 
