@@ -9,6 +9,11 @@ Esta aplicación permite administrar una flotilla de vehículos, donde cada veh�
 - **Backend:** Django, Django REST Framework, SQLite, JWT para autenticación.
 - **Frontend:** React con Vite y TypeScript, React-Leaflet para el mapa, JWT para autenticación.
 
+## Playgrounds de la app
+
+- [Frontend](https://vehicle-tracking-dun.vercel.app/)
+- [Backend](https://dba4-3-21-40-187.ngrok-free.app/)
+
 ## Estructura del Proyecto
 
 ### Backend
