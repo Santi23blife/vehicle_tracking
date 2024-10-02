@@ -74,6 +74,7 @@ function App() {
                   Password:
                   <input name='password' type='password' placeholder='Enter password' required/>
                 </label>
+              <span>Username or password is incorrect</span>
               <button type='submit' className='modal-button w-36'>Login</button>
               <div>or</div>
               <button className='modal-button-secondary w-48 mt-0' onClick={() => setOpenModal("REGISTER")}>Register</button>
