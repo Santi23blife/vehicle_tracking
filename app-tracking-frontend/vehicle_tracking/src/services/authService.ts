@@ -1,5 +1,5 @@
 // const SERVER_URL = import.meta.env.SERVER_URL
-const SERVER_URL = "https://8788-3-21-40-187.ngrok-free.app"
+const SERVER_URL = "https://be25-3-21-40-187.ngrok-free.app"
 
 export interface User {
     username: string;
