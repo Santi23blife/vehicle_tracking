@@ -71,18 +71,21 @@ vehicle_tracking-frontend/
     ```
   - **Respuesta:**
     - `201 Created` si el usuario es creado.
+
 - **Listar usuarios**
 
   - **Método:** GET
   - **Endpoint:** `/api/users/`
   - **Respuesta:**
     - `200 OK` con una lista de usuarios.
+
 - **Obtener usuario por ID**
 
   - **Método:** GET
   - **Endpoint:** `/api/users/<id>/`
   - **Respuesta:**
     - `200 OK` con los detalles del usuario.
+
 - **Actualizar usuario**
 
   - **Método:** PUT
@@ -96,6 +99,7 @@ vehicle_tracking-frontend/
     ```
   - **Respuesta:**
     - `200 OK` si la actualización es exitosa.
+
 - **Eliminar usuario**
 
   - **Método:** DELETE
@@ -119,18 +123,21 @@ vehicle_tracking-frontend/
     ```
   - **Respuesta:**
     - `201 Created` si el vehículo es creado.
+
 - **Listar vehículos**
 
   - **Método:** GET
   - **Endpoint:** `/api/vehicles/`
   - **Respuesta:**
     - `200 OK` con una lista de vehículos del usuario autenticado.
+
 - **Obtener vehículo por ID**
 
   - **Método:** GET
   - **Endpoint:** `/api/vehicles/<id>/`
   - **Respuesta:**
     - `200 OK` con los detalles del vehículo.
+
 - **Actualizar vehículo**
 
   - **Método:** PUT
@@ -145,6 +152,7 @@ vehicle_tracking-frontend/
     ```
   - **Respuesta:**
     - `200 OK` si la actualización es exitosa.
+
 - **Eliminar vehículo**
 
   - **Método:** DELETE
@@ -168,6 +176,7 @@ vehicle_tracking-frontend/
    git clone <url-del-repositorio>
    cd vehicle_tracking
    ```
+
 2. Crea un entorno virtual:
 
    ```bash
@@ -175,16 +184,19 @@ vehicle_tracking-frontend/
    source venv/bin/activate  # En Linux/Mac
    venv\Scriptsctivate  # En Windows
    ```
+
 3. Instala las dependencias:
 
    ```bash
    pip install -r requirements.txt
    ```
+
 4. Ejecuta las migraciones:
 
    ```bash
    python manage.py migrate
    ```
+
 5. Levanta el servidor de desarrollo:
 
    ```bash
@@ -199,11 +211,13 @@ vehicle_tracking-frontend/
    git clone <url-del-repositorio-frontend>
    cd vehicle_tracking-frontend
    ```
+
 2. Instala las dependencias:
 
    ```bash
    npm install
    ```
+
 3. Levanta la aplicación:
 
    ```bash
